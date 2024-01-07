@@ -18,3 +18,7 @@ utoipa-redoc = { version = "1.0.0", features = ["axum"] }
 utoipa-rapidoc = { version = "1.0.0", features = ["axum"] }
 reqwest = {version = "0.11", features = ["json"]}
 rxing = { version = "0.5.0", features = ["image", "serde"] }
+mongodb = { version = "2.8.0", features = ["tokio-runtime"] }
+futures = { version = "0.3.28" }
+chrono = { version = "0.4.31", features = ["serde"] }
+dotenv = "0.15.0"

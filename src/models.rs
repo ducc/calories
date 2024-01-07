@@ -1,6 +1,6 @@
 use serde::Deserialize;
 use serde::Serialize;
-use serde_json::Value;
+
 use std::fmt::{self, Display};
 use std::iter::FromIterator;
 use std::marker::PhantomData as Phantom;
@@ -23,12 +23,10 @@ pub struct Product {
     pub id: String,
     // #[serde(rename = "_keywords")]
     // pub keywords: Vec<String>,
- 
     pub entry_dates_tags: Option<Vec<String>>,
     #[serde(rename = "expiration_date")]
     pub expiration_date: String,
 
-   
     #[serde(rename = "product_name_en")]
     pub product_name_en: String,
 
@@ -40,7 +38,6 @@ pub struct Product {
 
     pub nutriments: Nutriments,
 }
-
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

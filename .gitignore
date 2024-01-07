@@ -1,2 +1,5 @@
 target/
 .envrc
+grafana-storage/
+.env
+nutracheck_token.json
