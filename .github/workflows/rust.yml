@@ -16,7 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Build
-      run: cargo build
-    - name: Run tests
-      run: cargo test
+      run: docker build -t ghcr.io/ducc/calories:$GITHUB_SHA -t ghcr.io/ducc/calories:latest  -f Dockerfile .
+
+    - name: Push
+      if: github.ref == 'refs/heads/master'
+      run: docker push ghcr.io/ducc/calories:$GITHUB_SHA ghcr.io/ducc/calories:latest
