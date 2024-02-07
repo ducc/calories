@@ -15,13 +15,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     tracing_subscriber::fmt::init();
 
+    let import_days = std::env::var("NUTRACHECK_IMPORT_DAYS")?.parse::<i64>()?;
+
     let mongo_client = mongo::Client::new_from_env().await?;
 
     let nc_client = nutracheck::Client::new_from_env().await?;
 
     let todays_date = Utc::now().date_naive();
 
-    for date in dateiter::DateRange(todays_date - Duration::weeks(52), todays_date) {
+    for date in dateiter::DateRange(todays_date - Duration::days(import_days), todays_date) {
         let entries = nc_client.entries(date).await.expect("getting entries");
 
         mongo_client.insert_entries(date, entries).await?;

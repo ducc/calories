@@ -457,6 +457,7 @@ pub enum Measure {
     Ml,
     UsFl,
     L,
+    Cl,
 }
 
 impl<'de> Deserialize<'de> for Measure {
@@ -472,6 +473,7 @@ impl<'de> Deserialize<'de> for Measure {
             "ml" => Measure::Ml,
             "us fl" | "usfl" => Measure::UsFl,
             "l" => Measure::L,
+            "cl" => Measure::Cl,
             _ => return Err(D::Error::custom(format!("unhandled variant: {}", s2))),
         })
     }
