@@ -20,13 +20,13 @@ jobs:
     - name: Build
       run: docker build -t ghcr.io/ducc/calories:$GITHUB_SHA -t ghcr.io/ducc/calories:latest  -f Dockerfile .
 
-    - name: Push sha
-      if: github.ref == 'refs/heads/master'
-      run: docker push ghcr.io/ducc/calories:$GITHUB_SHA 
-    
     - name: Docker login
       if: github.ref == 'refs/heads/master'
       run: echo ${{ secrets.PACKAGES_ACCESS_TOKEN }} | docker login ghcr.io -u ducc --password-stdin
+
+    - name: Push sha
+      if: github.ref == 'refs/heads/master'
+      run: docker push ghcr.io/ducc/calories:$GITHUB_SHA 
 
     - name: Push latest
       if: github.ref == 'refs/heads/master'
