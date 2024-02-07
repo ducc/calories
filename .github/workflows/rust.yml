@@ -24,6 +24,10 @@ jobs:
       if: github.ref == 'refs/heads/master'
       run: docker push ghcr.io/ducc/calories:$GITHUB_SHA 
     
+    - name: Docker login
+      if: github.ref == 'refs/heads/master'
+      run: echo ${{ secrets.PACKAGES_ACCESS_TOKEN }} | docker login ghcr.io -u ducc --password-stdin
+
     - name: Push latest
       if: github.ref == 'refs/heads/master'
       run: docker push ghcr.io/ducc/calories:latest
