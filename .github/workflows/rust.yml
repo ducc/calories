@@ -16,10 +16,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Build
       run: docker build -t ghcr.io/ducc/calories:$GITHUB_SHA -t ghcr.io/ducc/calories:latest  -f Dockerfile .
 
-    - name: Push
+    - name: Push sha
       if: github.ref == 'refs/heads/master'
-      run: docker push ghcr.io/ducc/calories:$GITHUB_SHA ghcr.io/ducc/calories:latest
+      run: docker push ghcr.io/ducc/calories:$GITHUB_SHA 
+    
+    - name: Push latest
+      if: github.ref == 'refs/heads/master'
+      run: docker push ghcr.io/ducc/calories:latest
